@@ -1,8 +1,8 @@
 class Solution {
 public:
     vector<int> sortArray(vector<int>& nums) {
-        if (nums.size() <= 1) return nums;
-
+        if (nums.size() <= 1) 
+            return nums;
         vector<int> temp(nums.size());
         mergeSort(nums, 0, nums.size() - 1, temp);
         return nums;
@@ -10,8 +10,8 @@ public:
 
 private:
     void mergeSort(vector<int>& nums, int low, int high, vector<int>& temp) {
-        if (low >= high) return;
-
+        if (low >= high) 
+            return;
         int mid = low + (high - low) / 2;
         mergeSort(nums, low, mid, temp);
         mergeSort(nums, mid + 1, high, temp);
