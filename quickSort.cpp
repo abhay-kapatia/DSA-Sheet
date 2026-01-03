@@ -1,7 +1,6 @@
 class Solution {
   public:
     void quickSort(vector<int>& arr, int low, int high) {
-        // code here
         if(low<high){
             int pIndex = partition(arr, low, high); // partition Index where the pivot is correctly placed
             quickSort(arr, low, pIndex - 1);
@@ -11,7 +10,6 @@ class Solution {
 
   public:
     int partition(vector<int>& arr, int low, int high) {
-        // code here
         int pivot = arr[low]; // could be any element
         int i = low;
         int j = high;
