@@ -1,2 +1,2 @@
-# DSA
-Cpp
+# DSA-Daily-Sheet
+Daily DSA Questions
