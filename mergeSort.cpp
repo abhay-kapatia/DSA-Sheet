@@ -1,46 +1,39 @@
 class Solution {
-public:
-    vector<int> sortArray(vector<int>& nums) {
-        if (nums.size() <= 1) 
-            return nums;
-        vector<int> temp(nums.size());
-        mergeSort(nums, 0, nums.size() - 1, temp);
-        return nums;
-    }
-
-private:
-    void mergeSort(vector<int>& nums, int low, int high, vector<int>& temp) {
-        if (low >= high) 
+  public:
+    void mergeSort(vector<int>& arr, int l, int r) {
+        // code here
+        if(l>=r){
             return;
-        int mid = low + (high - low) / 2;
-        mergeSort(nums, low, mid, temp);
-        mergeSort(nums, mid + 1, high, temp);
-        merge(nums, low, mid, high, temp);
+        }
+        //^base case
+        int mid = l + (r - l) / 2;
+        mergeSort(arr, l, mid);
+        mergeSort(arr, mid+1, r);
+        merge(arr, l, r, mid);
     }
-
-    void merge(vector<int>& nums, int low, int mid, int high, vector<int>& temp) {
-        int l = low;
-        int r = mid + 1;
-        int idx = low;
-
-        while (l <= mid && r <= high) {
-            if (nums[l] <= nums[r]) {
-                temp[idx++] = nums[l++];
-            } else {
-                temp[idx++] = nums[r++];
+    void merge(vector<int> &arr, int low, int high, int mid){
+        vector<int> temp;
+        int left = low;
+        int right = mid+1;
+        while(left<=mid && right<=high){
+            if(arr[left]<arr[right]){
+                temp.push_back(arr[left]);
+                left++;
+            }else{
+                temp.push_back(arr[right]);
+                right++;
             }
         }
-
-        while (l <= mid) {
-            temp[idx++] = nums[l++];
+        while(left<=mid){
+            temp.push_back(arr[left]);
+            left++;
         }
-
-        while (r <= high) {
-            temp[idx++] = nums[r++];
+        while(right<=high){
+            temp.push_back(arr[right]);
+            right++;
         }
-
-        for (int i = low; i <= high; i++) {
-            nums[i] = temp[i];
+        for(int i = low ; i <= high ; i++){
+            arr[i] = temp[i-low];
         }
     }
 };
