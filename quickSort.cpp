@@ -16,9 +16,11 @@ class Solution {
         while(i<j){ // till i >= j
             while(arr[i] <= pivot && i<= high - 1){
                 i++; // first element which is greater than pivot
+                // i <= high - 1 done so that it doesn't go outoff bound
             }
             while(arr[j] >= pivot && j >= low + 1){
                 j--; // first element which is leaser than pivot
+                // j >= low + 1 done so that it doesn't go outoff bound
             }
             if(i < j) swap(arr[i], arr[j]);   
         }
