@@ -18,47 +18,45 @@ class Solution {
 //Optimal 2 - pointer must be sorted arrays
 class Solution {
   public:
-    vector<int> findUnion(vector<int>& a, vector<int>& b) {
-        // Two pointer approach requires sorted arrays
-    
-        int i = 0, j = 0;
-        int sa = a.size(), sb = b.size();
-        vector<int> uni;
-
-        while (i < sa && j < sb) {
-            if (a[i] == b[j]) {
-                if (uni.empty() || uni.back() != a[i])
-                    uni.push_back(a[i]);
+    vector<int> findUnion(vector<int> &a, vector<int> &b) {
+        // code here
+        int i = 0;
+        int j = 0;
+        vector<int> temp;
+        // 2 - pointer approach O(N)
+        while(i<a.size()&&j<b.size()){
+            if(a[i]==b[j]){
+                if (temp.empty() || temp.back() != a[i])
+                    temp.push_back(a[i]);
+                
                 i++;
                 j++;
-            }
-            else if (a[i] < b[j]) {
-                if (uni.empty() || uni.back() != a[i])
-                    uni.push_back(a[i]);
+            }else if(a[i]<b[j]){
+                if (temp.empty() || temp.back() != a[i])
+                    temp.push_back(a[i]);
+                
                 i++;
-            }
-            else {
-                if (uni.empty() || uni.back() != b[j])
-                    uni.push_back(b[j]);
+            }else{
+                if (temp.empty() || temp.back() != b[j])
+                    temp.push_back(b[j]);
+               
                 j++;
             }
         }
-
-        // Remaining elements of a[]
-        while (i < sa) {
-            if (uni.empty() || uni.back() != a[i])
-                uni.push_back(a[i]);
+        // inserting the remaining from a
+        while(i<a.size()){
+            if (temp.empty() || temp.back() != a[i])
+                    temp.push_back(a[i]);
+            
             i++;
         }
-
-        // Remaining elements of b[]
-        while (j < sb) {
-            if (uni.empty() || uni.back() != b[j])
-                uni.push_back(b[j]);
+        // inserting the remaining from a
+        while(j<b.size()){
+            if (temp.empty() || temp.back() != b[j])
+                    temp.push_back(b[j]);
+            
             j++;
         }
-
-        return uni;
+        return temp;
     }
 };
-
