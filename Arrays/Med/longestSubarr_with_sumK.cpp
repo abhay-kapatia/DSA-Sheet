@@ -1,27 +1,26 @@
-//if all elements are positive (sliding window/ 2 pointer optimal)
 class Solution {
-  public:
+public:
     int longestSubarray(vector<int>& arr, int k) {
-        // code here
         int n = arr.size();
-        int i = 0;
-        int j = 0;
-        int sum = 0, maxlen = 0, maxlenfin = 0; 
-        while(j<n){
-            sum = sum + arr[j];
-            maxlen ++;
-            while(sum > k)
-            {
-                sum = sum - arr[i];
+        int i = 0, j = 0;
+        long long sum = 0;
+        int maxLen = 0;
+
+        while (j < n) {
+            sum += arr[j];
+
+            while (i <= j && sum > k) {
+                sum -= arr[i];
                 i++;
             }
-            if(sum < k){
-                j++;
+          
+            if (sum == k) {
+                maxLen = max(maxLen, j - i + 1);
             }
-            else if(sum == k){
-                maxlenfin = max(maxlen, maxlenfin);
-            }
+
+            j++;
         }
-        return maxlenfin;
+
+        return maxLen;
     }
 };
